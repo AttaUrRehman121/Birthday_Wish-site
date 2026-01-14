@@ -1,65 +1,108 @@
-import Image from "next/image";
+'use client';
+
+import { useState, useEffect } from 'react';
+import IntroOverlay from '@/components/IntroOverlay';
+import HeroSection from '@/components/HeroSection';
+import MemoryGallery from '@/components/MemoryGallery';
+import SecretDiary from '@/components/SecretDiary';
+import WishesSection from '@/components/WishesSection';
+import BirthdayCard from '@/components/BirthdayCard';
+import ConfettiAnimation from '@/components/ConfettiAnimation';
+import FloatingBalloons from '@/components/FloatingBalloons';
+import SprinkleAnimation from '@/components/SprinkleAnimation';
+import { calculateAge, isBirthdayToday, formatBirthdayDate, formatFullDate } from '@/utils/birthdayUtils';
 
 export default function Home() {
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showSprinkles, setShowSprinkles] = useState(false);
+  const [introOpen, setIntroOpen] = useState(true);
+
+  // Birthday information
+  const birthDate = new Date(2001, 0, 15); // January 15, 2001 (month is 0-indexed)
+  // Use new Date() for real-time, or set a specific date for testing
+  const currentDate = new Date(2025, 0, 15); // January 15, 2025 - Change to new Date() for real-time
+  
+  // Calculate age and check if today is birthday
+  const age = calculateAge(birthDate, currentDate);
+  const isTodayBirthday = isBirthdayToday(birthDate, currentDate);
+  const birthdayDateFormatted = formatBirthdayDate(birthDate);
+  const fullBirthDate = formatFullDate(birthDate);
+
+  useEffect(() => {
+    // On first load, keep confetti off until user "enters" (like the reference site).
+    setShowConfetti(false);
+  }, []);
+
+  // Customize these props for the birthday person
+  const birthdayPerson = {
+    name: 'Ahmed',
+    age: age,
+    birthdayDate: birthdayDateFormatted,
+    fullBirthDate: fullBirthDate,
+    isTodayBirthday: isTodayBirthday,
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="min-h-screen">
+      <IntroOverlay
+        open={introOpen}
+        title={`Happy Birthday ${birthdayPerson.name}💗`}
+        subtitle="Click to enter the celebration — memories, wishes, and surprises are waiting."
+        buttonText="Click to Enter Our World 💕"
+        onEnter={() => {
+          setIntroOpen(false);
+          setShowConfetti(true);
+          setTimeout(() => setShowConfetti(false), birthdayPerson.isTodayBirthday ? 10000 : 5000);
+          // ensure we're at the top for the hero
+          if (typeof window !== 'undefined') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        }}
+      />
+
+      {/* Animated Background Elements */}
+      <FloatingBalloons />
+      {showConfetti && <ConfettiAnimation />}
+      {showSprinkles && <SprinkleAnimation />}
+
+      {/* Main Sections */}
+      <HeroSection 
+        name={birthdayPerson.name} 
+        age={birthdayPerson.age}
+        birthdayDate={birthdayPerson.birthdayDate}
+        isTodayBirthday={birthdayPerson.isTodayBirthday}
+        onCelebrateClick={() => {
+          // Show sprinkle animation
+          setShowSprinkles(true);
+          setTimeout(() => setShowSprinkles(false), 8000); // Longer duration for realistic animation
+          
+          // Scroll to wishes section (after a short delay to see sprinkles)
+          setTimeout(() => {
+            const wishesSection = document.getElementById('wishes');
+            if (wishesSection) {
+              wishesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }, 500);
+        }}
+      />
+      <MemoryGallery />
+      <SecretDiary password="1501" />
+      <WishesSection />
+      <BirthdayCard 
+        message="On this special day, we celebrate you and all the joy you bring into our lives. May this year be filled with amazing adventures, wonderful opportunities, and countless moments of happiness. You deserve all the love and celebration in the world!"
+        from="Everyone Who Loves You"
+      />
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-8 text-center">
+        <p className="text-lg">Made with ❤️ for a special birthday celebration</p>
+        <p className="text-lg mt-2 font-semibold">
+          {birthdayPerson.isTodayBirthday 
+            ? '🎉 Today is your birthday! 🎉' 
+            : `Celebrating on ${birthdayPerson.birthdayDate}`}
+        </p>
+        <p className="text-sm mt-2 opacity-80">© 2025 Birthday Wishes</p>
+      </footer>
+    </main>
   );
 }
