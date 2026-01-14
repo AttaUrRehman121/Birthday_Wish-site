@@ -18,39 +18,59 @@ interface MemoryGalleryProps {
 const defaultMemories: Memory[] = [
   {
     id: 1,
-    title: 'First Birthday Celebration',
-    description: 'The day we first celebrated together! So many wonderful memories.',
-    date: '2020',
+    image: '/m1.JPG',
+    title: '',
+    description: 'A friend is someone who knows all about you and still loves you anyway! 😂',
+    date: '',
   },
   {
     id: 2,
-    title: 'Adventure Time',
-    description: 'Remember that amazing trip we took? Best times ever!',
-    date: '2021',
+    image: '/M2.jpeg',
+    title: '',
+    description: 'Friends don\'t let friends do stupid things... alone! We\'re in this together! 🤝',
+    date: '',
   },
   {
     id: 3,
-    title: 'Fun Moments',
-    description: 'Laughing until our stomachs hurt. These moments are priceless.',
-    date: '2022',
+    image: '/M3.jpeg',
+    title: '',
+    description: 'Best friends: the people you can be weird with and they still think you\'re cool! 🎉',
+    date: '',
   },
   {
     id: 4,
-    title: 'Special Day',
-    description: 'Every moment with you is special. Here\'s to many more!',
-    date: '2023',
+    image: '/m4.jpeg',
+    title: '',
+    description: 'Friendship is like peeing your pants. Everyone can see it, but only you can feel its warmth! 😄',
+    date: '',
   },
   {
     id: 5,
-    title: 'Celebration',
-    description: 'Dancing the night away. Pure joy and happiness!',
-    date: '2024',
+    image: '/m5.jpeg',
+    title: '',
+    description: 'A true friend is someone who thinks you\'re a good egg even though they know you\'re slightly cracked! 🥚',
+    date: '',
   },
   {
     id: 6,
-    title: 'Together',
-    description: 'Through thick and thin, always together. Forever friends!',
-    date: '2024',
+    image: '/m6.jpeg',
+    title: '',
+    description: 'Friends are the family you choose, and we chose chaos! But hey, it\'s our chaos! 💫',
+    date: '',
+  },
+  {
+    id: 7,
+    image: '/m7.jpeg',
+    title: '',
+    description: 'Real friends don\'t judge you when you\'re being extra. They join in! That\'s the real squad! 🔥',
+    date: '',
+  },
+  {
+    id: 8,
+    image: '/m8.jpeg',
+    title: '',
+    description: 'Friendship: where "I\'m fine" means "I need you" and "whatever" means "I love you"! 💕',
+    date: '',
   },
 ];
 
@@ -58,24 +78,27 @@ export default function MemoryGallery({ memories = defaultMemories }: MemoryGall
   const [selectedMemory, setSelectedMemory] = useState<number | null>(null);
 
   return (
-    <section id="memories" className="py-20 px-4 bg-gradient-to-b from-indigo-50 to-purple-50">
+    <section
+      id="memories"
+      className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-indigo-50 to-purple-50"
+    >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-3 sm:mb-4">
             Precious Memories
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
             A journey through the beautiful moments we've shared together
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {memories.map((memory, index) => (
             <motion.div
               key={memory.id}
@@ -89,11 +112,11 @@ export default function MemoryGallery({ memories = defaultMemories }: MemoryGall
             >
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden h-full transform transition-all duration-300">
                 {/* Image placeholder or gradient */}
-                <div className="h-64 bg-gradient-to-br from-purple-400 via-pink-400 to-indigo-400 relative overflow-hidden">
+                <div className="h-80 sm:h-96 bg-gradient-to-br from-purple-400 via-pink-400 to-indigo-400 relative overflow-hidden">
                   {memory.image ? (
                     <img
                       src={memory.image}
-                      alt={memory.title}
+                      alt="Memory"
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -101,22 +124,15 @@ export default function MemoryGallery({ memories = defaultMemories }: MemoryGall
                       📸
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  {memory.date && (
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-purple-600">
-                      {memory.date}
-                    </div>
-                  )}
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-800 mb-2">{memory.title}</h3>
                   <motion.p
                     initial={{ height: 'auto' }}
                     animate={{
                       height: selectedMemory === memory.id ? 'auto' : '3em',
                     }}
-                    className="text-gray-600 overflow-hidden"
+                    className="text-gray-700 text-center leading-relaxed overflow-hidden"
                   >
                     {memory.description}
                   </motion.p>

@@ -62,7 +62,10 @@ export default function WishesSection({ wishes = defaultWishes }: WishesSectionP
   }, [wishes.length]);
 
   return (
-    <section id="wishes" className="py-20 px-4 bg-gradient-to-b from-purple-50 to-pink-50 relative overflow-hidden">
+    <section
+      id="wishes"
+      className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-purple-50 to-pink-50 relative overflow-hidden"
+    >
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {Array.from({ length: 15 }).map((_, i) => (
@@ -94,12 +97,12 @@ export default function WishesSection({ wishes = defaultWishes }: WishesSectionP
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent mb-3 sm:mb-4">
             Birthday Wishes
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600">
             Heartfelt messages and wishes for your special day
           </p>
         </motion.div>
@@ -112,14 +115,14 @@ export default function WishesSection({ wishes = defaultWishes }: WishesSectionP
             animate={{ opacity: 1, x: 0, rotateY: 0 }}
             exit={{ opacity: 0, x: -100, rotateY: -90 }}
             transition={{ duration: 0.6 }}
-            className="bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-4xl mx-auto"
+            className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 max-w-4xl mx-auto"
           >
             <div className="text-center">
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2, type: 'spring' }}
-                className="text-6xl mb-6"
+                className="text-5xl sm:text-6xl mb-4 sm:mb-6"
               >
                 💝
               </motion.div>
@@ -127,7 +130,7 @@ export default function WishesSection({ wishes = defaultWishes }: WishesSectionP
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
-                className="text-2xl md:text-3xl font-medium text-gray-800 mb-4 leading-relaxed"
+                className="text-xl sm:text-2xl md:text-3xl font-medium text-gray-800 mb-4 leading-relaxed"
               >
                 "{wishes[currentWishIndex].quote}"
               </motion.p>
@@ -161,7 +164,7 @@ export default function WishesSection({ wishes = defaultWishes }: WishesSectionP
         </div>
 
         {/* Grid of all wishes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
           {wishes.map((wish, index) => (
             <motion.div
               key={wish.id}

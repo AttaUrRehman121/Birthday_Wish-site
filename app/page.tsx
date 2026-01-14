@@ -20,7 +20,8 @@ export default function Home() {
   // Birthday information
   const birthDate = new Date(2001, 0, 15); // January 15, 2001 (month is 0-indexed)
   // Use new Date() for real-time, or set a specific date for testing
-  const currentDate = new Date(2025, 0, 15); // January 15, 2025 - Change to new Date() for real-time
+  // Set to 2026 birthday so age displays as 25
+  const currentDate = new Date(2026, 0, 15);
   
   // Calculate age and check if today is birthday
   const age = calculateAge(birthDate, currentDate);
@@ -86,7 +87,7 @@ export default function Home() {
         }}
       />
       <MemoryGallery />
-      <SecretDiary password="1501" />
+      {/* <SecretDiary password="1501" /> */}
       <WishesSection />
       <BirthdayCard 
         message="On this special day, we celebrate you and all the joy you bring into our lives. May this year be filled with amazing adventures, wonderful opportunities, and countless moments of happiness. You deserve all the love and celebration in the world!"
@@ -94,14 +95,16 @@ export default function Home() {
       />
 
       {/* Footer */}
-      <footer className="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-8 text-center">
-        <p className="text-lg">Made with ❤️ for a special birthday celebration</p>
-        <p className="text-lg mt-2 font-semibold">
+      <footer className="bg-gradient-to-r from-purple-600 to-pink-600 text-white py-8 text-center px-4">
+        <p className="text-base sm:text-lg">
+          Made with ❤️ for a special birthday celebration
+        </p>
+        <p className="text-base sm:text-lg mt-2 font-semibold">
           {birthdayPerson.isTodayBirthday 
             ? '🎉 Today is your birthday! 🎉' 
             : `Celebrating on ${birthdayPerson.birthdayDate}`}
         </p>
-        <p className="text-sm mt-2 opacity-80">© 2025 Birthday Wishes</p>
+        <p className="text-xs sm:text-sm mt-2 opacity-80">© 2025 Birthday Wishes</p>
       </footer>
     </main>
   );

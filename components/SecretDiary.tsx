@@ -43,19 +43,24 @@ export default function SecretDiary({
   );
 
   return (
-    <section id="diary" className="py-20 px-4 bg-gradient-to-b from-indigo-50 via-pink-50 to-white">
+    <section
+      id="diary"
+      className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-indigo-50 via-pink-50 to-white"
+    >
       <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-10"
+          className="text-center mb-8 sm:mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-700 to-pink-600 bg-clip-text text-transparent">
             Secret Diary
           </h2>
-          <p className="mt-3 text-gray-600">A private little book: photos + quotes (password protected).</p>
+          <p className="mt-2 sm:mt-3 text-sm sm:text-base text-gray-600">
+            A private little book: photos + quotes (password protected).
+          </p>
         </motion.div>
 
         {/* Cover */}
@@ -65,7 +70,7 @@ export default function SecretDiary({
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="relative mx-auto max-w-md"
+            className="relative mx-auto max-w-md w-full"
           >
             <div className="relative rounded-[28px] overflow-hidden shadow-2xl border border-black/10 bg-[#fff7ef]">
               {/* confetti border */}
@@ -87,25 +92,27 @@ export default function SecretDiary({
                 ))}
               </div>
 
-              <div className="relative p-8 pt-16 pb-14">
+              <div className="relative p-6 sm:p-8 pt-14 sm:pt-16 pb-12 sm:pb-14">
                 <div className="text-center">
-                  <div className="text-5xl mb-4">🎉</div>
-                  <div className="text-4xl md:text-5xl font-extrabold tracking-wide text-[#1f3b82]">
+                  <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">🎉</div>
+                  <div className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide text-[#1f3b82]">
                     {title.toUpperCase()}
                   </div>
-                  <div className="mt-2 text-lg font-semibold text-[#1f3b82]/80">{subtitle}</div>
-                </div>
-
-                <div className="mt-7 grid grid-cols-2 gap-3 items-center">
-                  <div className="rounded-2xl bg-white shadow-md p-4 flex items-center justify-center">
-                    <div className="text-5xl">🎂</div>
-                  </div>
-                  <div className="rounded-2xl bg-white shadow-md p-4 flex items-center justify-center">
-                    <div className="text-5xl">🎁</div>
+                  <div className="mt-2 text-base md:text-lg font-semibold text-[#1f3b82]/80">
+                    {subtitle}
                   </div>
                 </div>
 
-                <div className="mt-8 text-center">
+                <div className="mt-6 sm:mt-7 grid grid-cols-2 gap-3 items-center">
+                  <div className="rounded-2xl bg-white shadow-md p-4 flex items-center justify-center">
+                    <div className="text-4xl sm:text-5xl">🎂</div>
+                  </div>
+                  <div className="rounded-2xl bg-white shadow-md p-4 flex items-center justify-center">
+                    <div className="text-4xl sm:text-5xl">🎁</div>
+                  </div>
+                </div>
+
+                <div className="mt-7 sm:mt-8 text-center">
                   <div className="inline-flex items-center justify-center gap-2 text-sm text-gray-600">
                     <span className="font-semibold text-[#7c3aed]">Click to view</span>
                     <span>🔒</span>
@@ -147,7 +154,7 @@ export default function SecretDiary({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 12 }}
               transition={{ duration: 0.5 }}
-              className="mt-10"
+              className="mt-8 sm:mt-10 overflow-x-auto pb-4"
             >
               <DiaryFlipbook pages={diaryPages} />
             </motion.div>
