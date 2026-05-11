@@ -32,7 +32,10 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-200 via-purple-300 to-indigo-400 overflow-hidden pt-20">
+    <section
+      id="home"
+      className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-200 via-purple-300 to-indigo-400 overflow-hidden pt-24 md:pt-28"
+    >
       {/* Animated Background Blur Shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -88,18 +91,18 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
       </div>
 
       {/* Main Content Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 w-full">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8 w-full">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-center">
           
           {/* Left Section - Circular Background with Greeting */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="relative flex justify-center md:justify-start"
+            className="relative flex justify-center md:justify-start mb-10 md:mb-0"
           >
             {/* Large Circular Background */}
-            <div className="relative w-full max-w-[500px] aspect-square">
+            <div className="relative w-full max-w-[420px] sm:max-w-[480px] aspect-square">
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -111,12 +114,12 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
               />
               
               {/* Content on Circle */}
-              <div className="relative z-10 h-full flex flex-col items-center justify-center p-8 text-center">
+              <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 sm:px-8 py-8 text-center">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="text-3xl md:text-4xl font-light text-pink-200 mb-2"
+                  className="text-2xl sm:text-3xl md:text-4xl font-light text-pink-200 mb-1 sm:mb-2"
                 >
                   HAPPY
                 </motion.div>
@@ -125,7 +128,7 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.6, type: 'spring' }}
-                  className="text-5xl md:text-7xl font-bold text-white mb-2"
+                  className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-1 sm:mb-2"
                 >
                   BIRTHDAY
                 </motion.h1>
@@ -134,7 +137,7 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 }}
-                  className="text-2xl md:text-3xl font-light text-white mb-6"
+                  className="text-xl sm:text-2xl md:text-3xl font-light text-white mb-5 sm:mb-6"
                 >
                   TO {name.toUpperCase()}
                 </motion.div>
@@ -249,7 +252,7 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col items-center md:items-start space-y-6"
+            className="flex flex-col items-center md:items-start space-y-6 mt-4 md:mt-0"
           >
             {/* Date Display */}
             {birthdayDate && (
@@ -257,7 +260,7 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-3xl md:text-4xl font-light text-white tracking-wider"
+                className="text-2xl sm:text-3xl md:text-4xl font-light text-white tracking-wider text-center md:text-left"
               >
                 {formatDateForDisplay(birthdayDate)}
               </motion.div>
@@ -269,7 +272,7 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, type: 'spring' }}
-                className="text-6xl md:text-8xl font-bold text-white"
+                className="text-5xl sm:text-6xl md:text-8xl font-bold text-white"
               >
                 {age}
               </motion.div>
@@ -283,7 +286,7 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
               transition={{ delay: 0.6 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-purple-600/90 backdrop-blur-sm rounded-2xl text-white font-semibold text-lg shadow-xl hover:bg-purple-700/90 transition-all cursor-pointer"
+              className="px-7 sm:px-8 py-3.5 sm:py-4 bg-purple-600/90 backdrop-blur-sm rounded-2xl text-white font-semibold text-base sm:text-lg shadow-xl hover:bg-purple-700/90 transition-all cursor-pointer"
             >
               LET&apos;S CELEBRATE
             </motion.button>
@@ -294,7 +297,7 @@ export default function HeroSection({ name = 'Birthday Star', age, birthdayDate,
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.7, type: 'spring' }}
-                className="flex items-center gap-2 bg-yellow-400/90 backdrop-blur-sm px-4 py-2 rounded-full"
+                className="flex items-center gap-2 bg-yellow-400/90 backdrop-blur-sm px-4 py-2 rounded-full mt-2"
               >
                 <motion.span
                   animate={{ rotate: [0, 15, -15, 0] }}

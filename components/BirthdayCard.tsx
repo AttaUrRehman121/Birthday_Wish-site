@@ -12,7 +12,7 @@ export default function BirthdayCard({
   from = 'With Love'
 }: BirthdayCardProps) {
   return (
-    <section className="py-20 px-4 bg-gradient-to-b from-pink-50 to-indigo-50">
+    <section className="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-pink-50 to-indigo-50">
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -22,7 +22,7 @@ export default function BirthdayCard({
           className="relative"
         >
           {/* Card */}
-          <div className="bg-gradient-to-br from-white to-purple-50 rounded-3xl shadow-2xl p-8 md:p-12 relative overflow-hidden">
+          <div className="bg-gradient-to-br from-white to-purple-50 rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 relative overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-purple-200/30 rounded-full blur-3xl -mr-32 -mt-32" />
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-pink-200/30 rounded-full blur-3xl -ml-32 -mb-32" />
@@ -32,7 +32,7 @@ export default function BirthdayCard({
                 initial={{ rotate: -10 }}
                 animate={{ rotate: [0, 10, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-                className="text-6xl mb-6 text-center"
+                className="text-5xl sm:text-6xl mb-4 sm:mb-6 text-center"
               >
                 🎁
               </motion.div>
@@ -42,7 +42,7 @@ export default function BirthdayCard({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-3xl md:text-4xl font-bold text-center mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-5 sm:mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
               >
                 A Special Message
               </motion.h3>
@@ -52,7 +52,7 @@ export default function BirthdayCard({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="text-lg md:text-xl text-gray-700 text-center leading-relaxed mb-8"
+                className="text-base sm:text-lg md:text-xl text-gray-700 text-center leading-relaxed mb-6 sm:mb-8"
               >
                 {message}
               </motion.p>
