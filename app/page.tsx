@@ -31,6 +31,8 @@ export default function Home() {
   useEffect(() => {
     // On first load, keep confetti off until user "enters" (like the reference site).
     setShowConfetti(false);
+    setShowSprinkles(true);
+    setTimeout(() => setShowSprinkles(false), 5000);
   }, []);
 
   // Customize these props for the birthday person

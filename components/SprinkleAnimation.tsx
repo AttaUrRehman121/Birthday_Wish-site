@@ -24,7 +24,7 @@ export default function SprinkleAnimation() {
     const pieces: SprinklePiece[] = [];
     const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 1000;
     
-    for (let i = 0; i < 120; i++) {
+    for (let i = 0; i < 400; i++) {
       pieces.push({
         id: i,
         x: Math.random() * 100,
@@ -41,7 +41,7 @@ export default function SprinkleAnimation() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-[60]">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-[100]">
       {sprinkles.map((piece) => {
         const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 1000;
         const fallDistance = windowHeight + 150;
@@ -56,7 +56,7 @@ export default function SprinkleAnimation() {
               height: `${piece.size}px`,
               backgroundColor: piece.color,
               borderRadius: piece.size < 4 ? '50%' : '30%', // Smaller ones are rounder
-              boxShadow: `0 0 ${piece.size * 0.8}px ${piece.color}`,
+              willChange: 'transform, opacity', // Performance optimization
             }}
             initial={{ 
               y: piece.y, 
